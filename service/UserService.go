@@ -1,6 +1,9 @@
 package service
 
 import (
+	"fmt"
+	database "goapp/database"
+	log "goapp/log"
 	"goapp/model"
 	"goapp/utils"
 	"net/http"
@@ -25,5 +28,28 @@ func GetUserByID(c *gin.Context) {
 }
 
 func GetAllUsers(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, users)
+	// c.IndentedJSON(http.StatusOK, users)
+
+	rows, err := database.Db.Query("SELECT id, identify_id, ticket_id FROM customer")
+	if err != nil {
+		log.Error("Query error:", err)
+		return
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var id int
+		var identify_id, ticket_id string
+
+		err := rows.Scan(&id, &identify_id, &ticket_id)
+		if err != nil {
+			log.Error("Row scan error:", err)
+			continue
+		}
+
+		// Print ออก console
+		fmt.Printf("ID: %d, identify_id: %s, ticket_id: %s\n", id, identify_id, ticket_id)
+	}
+
+	log.Info("Finished printing all customers")
 }

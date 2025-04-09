@@ -1,24 +1,25 @@
 package main
 
 import (
+	database "goapp/database"
 	"goapp/first_program"
+	log "goapp/log"
 	"goapp/routes"
 	"goapp/utils"
 
 	config "goapp/config"
-
-	log "github.com/sirupsen/logrus"
 )
 
 func main() {
 	// Initialize the configuration
-	config.InitLogConfig()
+	log.InitLogConfig()
 
 	// Hello world program
 	tutorial_1()
 
-	// inject Rest API
-	initRoutes()
+	// TODO: Connect to DB
+	database.MysqlConfiguration()
+	defer database.Db.Close()
 
 	// TODO goroutine
 	// TODO Garbage
@@ -28,17 +29,20 @@ func main() {
 	// TODO sync.WaitGroup
 
 	log.Info("This is an info message")
+
+	// inject Rest API
+	startRoutes()
 }
 
-func initRoutes() {
+func startRoutes() {
 	// Initialize the routes
-	engine := config.RouteConfig()
+	config.RouteConfig()
 
 	// Initialize the routes
-	routes.InitUserRoutes(engine)
+	routes.InitUserRoutes()
 
 	log.Info("All Routes initialized")
-	config.StartRoute(engine, "8080")
+	config.StartRoute("8080")
 }
 
 func tutorial_1() {

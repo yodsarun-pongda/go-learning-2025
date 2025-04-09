@@ -6,15 +6,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RouteConfig() *gin.Engine {
-	return gin.Default()
+var Route *gin.Engine
+
+func RouteConfig() {
+	Route = gin.Default()
 }
 
-func StartRoute(route *gin.Engine, portNumber string) {
+func StartRoute(portNumber string) {
 	port := portNumber
 	if !strings.HasPrefix(port, ":") {
 		port = ":" + port
 	}
 
-	route.Run(port)
+	Route.Run(port)
 }
