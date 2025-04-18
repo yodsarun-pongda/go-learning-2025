@@ -10,6 +10,21 @@ go mod tidy
 go run MyLearningApplication.go
 ```
 
+## Build Go Application
+1. build application
+```
+go build
+```
+1.1 custom architech
+GOOS คือ เลือกระบบปฏิบัติการที่จะ Build
+GOARCH คือ สถาปัตยกรรมของ CPU ที่จะ Build
+```
+env GOOS=windows GOARCH=amd64 go build
+```
+2. Running go Application
+```
+./goapp
+```
 
 Yodsarun Pongda\
 - Senior Software Engineer\

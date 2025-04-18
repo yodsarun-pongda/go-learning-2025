@@ -2,7 +2,7 @@ package main
 
 import (
 	"goapp/first_program"
-	log "goapp/log"
+	log "goapp/log_config"
 	"goapp/routes"
 	"goapp/service"
 	"goapp/utils"
@@ -25,9 +25,9 @@ func main() {
 	threadNumber := 20
 	service.PocMultiThread(threadNumber)
 
-	// TODO Garbage
-
 	// TODO channel
+	
+
 	// TODO select
 	// TODO sync.Mutex
 	// TODO sync.WaitGroup
