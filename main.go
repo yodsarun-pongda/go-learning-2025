@@ -1,10 +1,10 @@
 package main
 
 import (
-	database "goapp/database"
 	"goapp/first_program"
 	log "goapp/log"
 	"goapp/routes"
+	"goapp/service"
 	"goapp/utils"
 
 	config "goapp/config"
@@ -18,11 +18,15 @@ func main() {
 	tutorial_1()
 
 	// TODO: Connect to DB
-	database.MysqlConfiguration()
-	defer database.Db.Close()
+	// database.MysqlConfiguration()
+	// defer database.Db.Close()
 
 	// TODO goroutine
+	threadNumber := 20
+	service.PocMultiThread(threadNumber)
+
 	// TODO Garbage
+
 	// TODO channel
 	// TODO select
 	// TODO sync.Mutex
@@ -31,7 +35,7 @@ func main() {
 	log.Info("This is an info message")
 
 	// inject Rest API
-	startRoutes()
+	// startRoutes()
 }
 
 func startRoutes() {

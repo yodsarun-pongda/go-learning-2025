@@ -13,24 +13,24 @@ func InitLogConfig() {
 	})
 }
 
-func Info(msg any) {
+func Info(msg ...any) {
 	log.Info(fmt.Sprintf("%v", msg))
 }
-func Debug(msg any) {
+func Debug(msg ...any) {
 	log.Debug(fmt.Sprintf("%v", msg))
 }
 func Error(msg any, error any) {
 	log.Error(fmt.Sprintf("%v, %v", msg, error))
 }
-func Fatal(msg any) {
+func Fatal(msg ...any) {
 	log.Fatal(fmt.Sprintf("%v", msg))
 }
-func Panic(msg any) {
+func Panic(msg ...any) {
 	log.Panic(fmt.Sprintf("%v", msg))
 }
-func Trace(msg any) {
+func Trace(msg ...any) {
 	log.Trace(fmt.Sprintf("%v", msg))
 }
-func Warn(msg any) {
+func Warn(msg ...any) {
 	log.Warn(fmt.Sprintf("%v", msg))
 }
